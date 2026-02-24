@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Aryan's Gallery</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+/* RESET */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Inter', sans-serif;
+background:linear-gradient(135deg,#fceff9,#f8edff,#fef6e4);
+color:#333;
+transition:0.4s;
+}
+
+/* DARK MODE */
+body.dark{
+background:#0f0f14;
+color:#eee;
+}
+
+/* HEADER */
+header{
+text-align:center;
+padding:120px 20px 80px;
+}
+
+header h1{
+font-family:'Playfair Display';
+font-size:60px;
+letter-spacing:4px;
+}
+
+header span{
+color:#e5989b;
+}
+
+header p{
+margin-top:15px;
+color:#777;
+}
+
+/* NAVBAR */
+.navbar{
+display:flex;
+justify-content:center;
+gap:40px;
+padding:20px;
+position:sticky;
+top:0;
+backdrop-filter:blur(10px);
+z-index:100;
+}
+
+.navbar a{
+text-decoration:none;
+color:inherit;
+font-weight:500;
+}
+
+/* SECTION */
+.section{
+padding:100px 12%;
+opacity:0;
+transform:translateY(40px);
+transition:1s;
+}
+
+.section.show{
+opacity:1;
+transform:translateY(0);
+}
+
+.section h2{
+font-family:'Playfair Display';
+margin-bottom:40px;
+letter-spacing:3px;
+}
+
+/* ABOUT */
+.about{
+text-align:center;
+max-width:700px;
+margin:auto;
+line-height:1.7;
+}
+
+/* GALLERY */
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+}
+
+.image-box{
+overflow:hidden;
+border-radius:15px;
+position:relative;
+}
+
+.image-box img{
+width:100%;
+height:380px;
+object-fit:cover;
+transition:0.6s;
+}
+
+.image-box:hover img{
+transform:scale(1.1);
+filter:brightness(0.8);
+}
+
+/* CONTACT */
+.contact{
+text-align:center;
+}
+
+.contact a{
+display:inline-block;
+margin:10px;
+padding:12px 28px;
+border-radius:30px;
+background:#e5989b;
+color:white;
+text-decoration:none;
+}
+
+/* FOOTER */
+footer{
+text-align:center;
+padding:30px;
+opacity:0.7;
+}
+
+/* DARK TOGGLE */
+.toggle{
+position:fixed;
+top:20px;
+right:20px;
+background:#333;
+color:white;
+border:none;
+padding:10px 15px;
+border-radius:20px;
+cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<button class="toggle" onclick="toggleDark()">🌙</button>
+
+<header>
+<h1>AR<span>YAN</span></h1>
+<p>Photographer • Visual Storyteller • Creative Developer</p>
+</header>
+
+<div class="navbar">
+<a href="#about">About</a>
+<a href="#street">Street</a>
+<a href="#nature">Nature</a>
+<a href="#portraits">Portraits</a>
+<a href="#contact">Contact</a>
+</div>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+<h2>About Me</h2>
+<p class="about">
+Hi, I'm <b>Aryan</b> — a passionate photographer and web creator.
+I love capturing emotions, light, and real moments.
+This gallery is a blend of art, design, and technology.
+</p>
+</section>
+
+<!-- STREET -->
+<section class="section" id="street">
+<h2>Street</h2>
+<div class="gallery">
+<img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7">
+<img src="https://images.unsplash.com/photo-1508051123996-69f8caf4891e">
+<img src="https://images.unsplash.com/photo-1520975918318-3a2f8b15d79f">
+</div>
+</section>
+
+<!-- NATURE -->
+<section class="section" id="nature">
+<h2>Nature</h2>
+<div class="gallery">
+<img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470">
+<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
+<img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e">
+</div>
+</section>
+
+<!-- PORTRAITS -->
+<section class="section" id="portraits">
+<h2>Portraits</h2>
+<div class="gallery">
+<img src="https://images.unsplash.com/photo-1517841905240-472988babdf9">
+<img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330">
+<img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1">
+</div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact" id="contact">
+<h2>Let's Work Together</h2>
+<a href="mailto:aryan@email.com">Email Me</a>
+<a href="#">Instagram</a>
+</section>
+
+<footer>
+© 2026 Aryan • All Rights Reserved
+</footer>
+
+<script>
+
+/* SCROLL ANIMATION */
+const sections=document.querySelectorAll(".section");
+
+window.addEventListener("scroll",()=>{
+sections.forEach(sec=>{
+if(sec.getBoundingClientRect().top<window.innerHeight-100){
+sec.classList.add("show");
+}
+});
+});
+
+/* DARK MODE SAVE */
+function toggleDark(){
+document.body.classList.toggle("dark");
+localStorage.setItem("darkMode",
+document.body.classList.contains("dark"));
+}
+
+if(localStorage.getItem("darkMode")=="true"){
+document.body.classList.add("dark");
+}
+
+</script>
+
+</body>
+</html>
